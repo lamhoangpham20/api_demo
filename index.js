@@ -29,16 +29,20 @@ app.get('/users', (req,res) =>
 app.get('/users/:userId', (req, res) =>{
     res.send(`get user info by id number ${req.params.userId}`)
 });
-app.post('users/login', (req, res) =>
+app.post('/users/login', (req, res) =>
 {
-    console.log('login');
-});
-app.post('/users/id/sensor', (req, res) => {
-    console.log('Hello /users');
-    const result = {
-        id: 264622
-    };
     
+    if(req.body.username === undefined || req.body.password === undefined)
+    {
+        res.sendStatus(400);
+    }
+    else
+    {
+        res.sendStatus(200);
+    }
+});
+app.post('/sensor', (req, res) => {
+    console.log('Hello /users');
     if (req.body.name == undefined) {
         res.sendStatus(400);
     }
@@ -47,8 +51,7 @@ app.post('/users/id/sensor', (req, res) => {
     }
 });
 
-app.get('/users/id/sensor', (req, res) => {
-    console.log('Hello /users');
-    return res.body.data;
+app.get('/sensor', (req, res) => {
+    res.send('sensor data')
 });
 app.listen(port, () => console.log(`Example app listenning on port ${port}`));
