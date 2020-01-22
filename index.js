@@ -17,6 +17,7 @@ app.post('/users', (req, res) => {
     }
     else {
         res.sendStatus(200);
+        res.send(id);
     }
 });
 app.get('/users', (req,res) =>
@@ -25,8 +26,8 @@ app.get('/users', (req,res) =>
 });
 // app.use('/sensor', sensorComponent);
 // app.use('/users', usersComponent);
-app.get('/users/id', (req, res) =>{
-    console.log('get user info by id')
+app.get('/users/:userId', (req, res) =>{
+    res.send(`get user info by id number ${req.params.userId}`)
 });
 app.post('users/login', (req, res) =>
 {
